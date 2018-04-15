@@ -1,0 +1,71 @@
+<!--
+C:\progra~1\snap\bin\gpt.exe C:\Users\bc\Desktop\EUMETSAT_TRAINING\olci_c2rcc.xml -SsourceProduct=C:\Users\bc\Desktop\EUMETSAT_TRAINING\data\L1\S3A_OL_1_EFR____20170527T100953_20170527T101253_20170528T142840_0179_018_122_1980_LN1_O_NT_002.SEN3 -t "C:\Users\bc\Desktop\EUMETSAT_TRAINING\data\c2rcc_graph_test.nc" 
+ 
+ 
+-->
+<graph id="OLCI_EUMETSAT">
+	<version>1.0</version>
+<!--
+	<node id="idepix">
+		<operator>Idepix.Sentinel3.Olci</operator>
+		<sources>
+		  <sourceProduct>${sourceProduct}</sourceProduct>
+		</sources>
+		<parameters>
+		  <computeCloudBuffer>true</computeCloudBuffer>
+		  <cloudBufferWidth>2</cloudBufferWidth>
+		</parameters>
+	 </node>
+-->
+    <node id="c2rcc">
+        <operator>c2rcc.olci</operator>
+        <sources>
+            <sourceProduct>${sourceProduct}</sourceProduct>
+
+        </sources>
+        <parameters>
+		    <outputAsRrs>true</outputAsRrs>
+		    <thresholdRtosaOOS>0.05</thresholdRtosaOOS>
+			<validPixelExpression>!quality_flags.invalid AND (!quality_flags.land || quality_flags.fresh_inland_water)</validPixelExpression>
+            <!--
+
+            <salinity>double</salinity>
+            <temperature>double</temperature>
+            <ozone>double</ozone>
+            <press>double</press>
+            <TSMfakBpart>double</TSMfakBpart>
+            <TSMfakBwit>double</TSMfakBwit>
+            <CHLexp>double</CHLexp>
+            <CHLfak>double</CHLfak>
+            <thresholdAcReflecOos>double</thresholdAcReflecOos>
+            <thresholdCloudTDown865>double</thresholdCloudTDown865>
+            <alternativeNNPath>${nnPath}</alternativeNNPath>
+            <atmosphericAuxDataPath>string</atmosphericAuxDataPath>
+            <deriveRwFromPathAndTransmittance>boolean</deriveRwFromPathAndTransmittance>
+            <useEcmwfAuxData>boolean</useEcmwfAuxData>
+            <outputRtoa>boolean</outputRtoa>
+            <outputRtosaGc>boolean</outputRtosaGc>
+            <outputRtosaGcAann>boolean</outputRtosaGcAann>
+            <outputRpath>boolean</outputRpath>
+            <outputTdown>boolean</outputTdown>
+            <outputTup>boolean</outputTup>
+            <outputAcReflectance>boolean</outputAcReflectance>
+            <outputRhown>boolean</outputRhown>
+            <outputOos>boolean</outputOos>
+            <outputKd>boolean</outputKd>
+            <outputUncertainties>boolean</outputUncertainties>
+            -->
+        </parameters>
+    </node>
+
+<!--
+  <node id="final_merge">
+    <operator>Merge</operator>
+    <sources>
+      <masterProduct>c2rcc</masterProduct>
+      <sourceProducts>idepix</sourceProducts>
+    </sources>
+  </node>
+-->
+  
+</graph>
