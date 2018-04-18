@@ -9,10 +9,10 @@ CMD_PATH='./'
 ROOT_CMD='dhusget.sh'
 
 #USERNAME: your CODA username
-USERNAME='benloveday'
+USERNAME='<< YOUR USERNAME >>'
 
 #PASSWORD: your CODA password
-PASSWORD='S4v41123'
+PASSWORD='<< YOUR PASSWORD >>'
 
 # this is where you specify the path where you want data downloaded: e.g. /test/test. The actual storage
 # path will be /test/test/<SENSOR>/<YEAR>/<MONTH>/<DAY>/
@@ -127,8 +127,7 @@ while [ "$DATE_ROLL" != $DATE_END ]; do
     echo $prod
     echo "-------------------------------------------------------------------------"
     echo "-------------------------------------------------------------------------"
-    echo $CMD_PATH'/'$ROOT_CMD $OPTIONS -S $YEAR'-'$MONTH'-'$DAY'T00:00:00.000Z' -E $YEAR'-'$MONTH'-'$DAY'T23:59:59.000Z' -O $OUT_DIR -Z $prod
-    exit
+    $CMD_PATH'/'$ROOT_CMD $OPTIONS -S $YEAR'-'$MONTH'-'$DAY'T00:00:00.000Z' -E $YEAR'-'$MONTH'-'$DAY'T23:59:59.000Z' -O $OUT_DIR -Z $prod
   done
 
   DATE_ROLL=$($date_cmd -d "$DATE_ROLL + 1 day")
