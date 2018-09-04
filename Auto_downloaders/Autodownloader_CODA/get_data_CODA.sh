@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #OS: sets your operating system: choices are 'Linux', 'OSx', 'Windows'
-OS='Linux'
+OS='OSx'
 
 #CMD_PATH: this is the path to where the dhusget.sh command is. dhusget.sh (or variant) is
 #the ROOT_CMD (the downloader we are going to call).
@@ -9,10 +9,10 @@ CMD_PATH='./'
 ROOT_CMD='dhusget.sh'
 
 #USERNAME: your CODA username
-USERNAME='<< YOUR USERNAME >>'
+USERNAME='benloveday'
 
 #PASSWORD: your CODA password
-PASSWORD='<< YOUR PASSWORD >>'
+PASSWORD='*********'
 
 # this is where you specify the path where you want data downloaded: e.g. /test/test. The actual storage
 # path will be /test/test/<SENSOR>/<YEAR>/<MONTH>/<DAY>/
@@ -22,8 +22,8 @@ OUT_ROOT='./Data/'
 SENSOR='SLSTR'
 
 # this is where you set the dates you want to download: start and end in the following format: 'YYYY-MM-DD'
-DATE_START='2018-03-25'
-DATE_END='2018-03-25'
+DATE_START='2018-01-25'
+DATE_END='2018-02-02'
 
 # this sets the number of downloads to attempt at the same time; CONCUR > 1 only for DPROD='DATA'
 CONCUR='1'
@@ -37,7 +37,8 @@ NUM_PROD='100'
 # this sets the geographical coordinates for the download area. Any tile that touches this box will
 # be downloaded, even if most of the data is outside of the box. Unavoidable at this stage, but may be
 # improved in the future. Format should be 'lon1,lat1:lon2,lat2'. E.g. for west africa: -10.0,-4.0:12.5, 8.0'
-COORDS='30.00,-9.00:44.00,21.00'
+#COORDS='-10.0,-4.0:12.5,8.0'
+COORDS='38.84,-9.60:45.44,2.13'
 
 # this option decides if you should download data or just test if it is present"
 # DOPTION='DATA' < downloads all data

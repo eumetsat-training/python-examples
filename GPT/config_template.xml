@@ -1,0 +1,65 @@
+<graph id="Graph">
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <file>SOURCE_PRODUCT</file>
+    </parameters>
+  </node>
+  <node id="Subset">
+    <operator>Subset</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <sourceBands/>
+      <geoRegion>POLYGON((-1.637540883378274 54.35871422005343,0.17257007635130073 54.35871422005343,0.17257007635130073 55.82304700831068,-1.637540883378274 55.82304700831068,-1.637540883378274 54.35871422005343))</geoRegion>
+      <subSamplingX>1</subSamplingX>
+      <subSamplingY>1</subSamplingY>
+      <fullSwath>false</fullSwath>
+      <tiePointGridNames/>
+      <copyMetadata>true</copyMetadata>
+    </parameters>
+  </node>
+  <node id="idepix">
+    <operator>Idepix.Sentinel3.Olci</operator>
+    <sources>
+      <sourceProduct refid="Subset"/>
+    </sources>
+    <parameters>
+      <computeCloudBuffer>true</computeCloudBuffer>
+      <cloudBufferWidth>2</cloudBufferWidth>
+    </parameters>
+  </node>
+  <node id="c2rcc">
+    <operator>c2rcc.olci</operator>
+    <sources>
+      <sourceProduct refid="Subset"/>
+    </sources>
+    <parameters>
+      <outputAsRrs>true</outputAsRrs>
+      <thresholdRtosaOOS>0.05</thresholdRtosaOOS>
+      <validPixelExpression>!quality_flags.invalid AND (!quality_flags.land || quality_flags.fresh_inland_water)</validPixelExpression>
+    </parameters>
+  </node>
+  <node id="final_merge">
+    <operator>Merge</operator>
+    <sources>
+      <masterProduct>c2rcc</masterProduct>
+      <sourceProducts>idepix</sourceProducts>
+    </sources>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="final_merge"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <file>OUTPUT_PRODUCT</file>
+      <formatName>NetCDF4-CF</formatName>
+    </parameters>
+  </node>
+-->
+  
+</graph>
