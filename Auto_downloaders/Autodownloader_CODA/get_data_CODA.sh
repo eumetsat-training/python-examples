@@ -9,21 +9,21 @@ CMD_PATH='./'
 ROOT_CMD='dhusget.sh'
 
 #USERNAME: your CODA username
-USERNAME='benloveday'
+USERNAME='<YOUR USERNAME>'
 
 #PASSWORD: your CODA password
-PASSWORD='*********'
+PASSWORD='<YOUR PASSWORD>'
 
 # this is where you specify the path where you want data downloaded: e.g. /test/test. The actual storage
 # path will be /test/test/<SENSOR>/<YEAR>/<MONTH>/<DAY>/
 OUT_ROOT='./Data/'
 
 # this is where you selecr which sensor you want: choices are 'OLCI','SLSTR' or 'SRAL'
-SENSOR='SLSTR'
+SENSOR='OLCI'
 
 # this is where you set the dates you want to download: start and end in the following format: 'YYYY-MM-DD'
-DATE_START='2018-01-25'
-DATE_END='2018-02-02'
+DATE_START='2018-10-03'
+DATE_END='2018-10-05'
 
 # this sets the number of downloads to attempt at the same time; CONCUR > 1 only for DPROD='DATA'
 CONCUR='1'
@@ -59,7 +59,7 @@ DPROD=('xfdumanifest.xml' 'chl_nn.nc' 'tie_geo_coordinates.nc' 'wqsf.nc' 'time_c
 # FOPTION is used to construct more specific arguments for downloads, again, see
 # dhusget.sh -help for more information
 # FOPTION='filename:S3A_OL_2*WRR*NT*'
-FOPTION='filename:S3A_SL_2*NR*'
+FOPTION='filename:S3A_OL_2*WFR*NT*'
 
 #####################################
 # NO USER PARAMETERS BELOW HERE; DO NOT EDIT

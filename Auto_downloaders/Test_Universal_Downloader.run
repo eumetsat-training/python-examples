@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# test downloaders for Sentinel data from EUMETSAT and ESA sources
+#
+# options:
+# -p your password
+# -n your username
+# -l platform (e.g. Sentinel-3)
+# -x product type (e.g. OL_2_WFR*)
+# -u url to download from
+# -f date from
+# -t date to
+# -f footprint lat1,lon1:lat2,lon2 (bottom left : top right)
+#
+# see python script for more details
+
+#Sentinel-3: EUMETSAT CODA
+/opt/local/bin/python3.6 Universal_Sentinel_Downloader.py -p <YOUR PASSWORD> -n <YOUR USERNAME> -i 50.0,-10.0:51.0,-9.0 -l Sentinel-3 -x OL_2_WFR* -f NOW-10 -u 'https://coda.eumetsat.int'
+
+#Sentinel-2: ESA APIHUB
+/opt/local/bin/python3.6 Universal_Sentinel_Downloader.py -p <YOUR PASSWORD> -n <YOUR USERNAME> -i 50.0,-10.0:51.0,-9.0 -l Sentinel-2 -x S2MSI2A* -f NOW-10 -u 'https://scihub.copernicus.eu/apihub'
+
+#Sentinel-1: ESA APIHUB
+/opt/local/bin/python3.6 Universal_Sentinel_Downloader.py -p <YOUR PASSWORD> -n <YOUR USERNAME> -i 50.0,-10.0:51.0,-9.0 -l Sentinel-1 -x GRD* -f NOW-10 -u 'https://scihub.copernicus.eu/apihub'
